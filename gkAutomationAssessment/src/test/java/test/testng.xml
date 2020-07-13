@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Default suite">
+ 	<test name="Test 1">
+		<parameter name="xpath" value="/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.support.v4.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ListView/android.widget.RelativeLayout"/>
+		<classes>
+			<class name="test.appiumTester" />
+		</classes>
+			<methods>
+                    <include name="viewGenres" />
+            </methods>
+	</test> 
+	
+	<test name="Test 2">
+		<parameter name="pauseXpath" value="//android.widget.ImageButton[@content-desc='play or pause']"/>
+		<classes>
+				<class name="test.appiumTester" />
+		</classes>
+			<methods>
+                    <include name="playRockSong" />
+            </methods>
+ 	</test>
+ 	
+	<test name="Test 3">
+		<parameter name="playBtn" value="(//android.widget.ImageView[@content-desc='Play item'])[1]"/>
+		<parameter name="backBtn" value="//android.widget.ImageButton[@content-desc='Navigate up']"/>
+		<classes>
+			<class name="test.appiumTester" />
+		</classes>
+		<methods>
+                <include name="viewSongsAreDisplayed" />
+        </methods>	
+	</test> 
+	
+</suite>

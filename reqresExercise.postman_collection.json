@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "f2dc3f90-9995-4bd0-8256-63ccae2a60ac",
+		"name": "reqresExercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://reqres.in/api/users?page=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73438345-d713-4c7b-b511-4657217a9fb7",
+						"exec": [
+							"var myBody = \"id: 101\"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"emma.wong@reqres.in\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85cf1c65-ef61-459e-b4c1-b53b343fb4da",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"createdAt\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?name=testMan&job=QA",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "testMan"
+						},
+						{
+							"key": "job",
+							"value": "QA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registerUserFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85c98576-cccf-4c9b-b681-427033ed1e90",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Missing email or username\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"error\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/register?email=test@testing&password=posttest",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"register"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@testing"
+						},
+						{
+							"key": "password",
+							"value": "posttest"
+						}
+					]
+				},
+				"description": "Negative test for registrations"
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd18f582-86da-46de-b121-972811a47553",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2?name=Hubert&job=pianist",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Hubert"
+						},
+						{
+							"key": "job",
+							"value": "pianist"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

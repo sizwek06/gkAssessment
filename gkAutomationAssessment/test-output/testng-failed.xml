@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]">
+  <test thread-count="5" name="Test 2(failed)">
+    <parameter name="pauseXpath" value="//android.widget.ImageButton[@content-desc=&#039;play or pause&#039;]"/>
+    <classes>
+      <class name="test.appiumTester">
+        <methods>
+          <include name="playRockSong" invocation-numbers="0"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- test.appiumTester -->
+    </classes>
+  </test> <!-- Test 2(failed) -->
+  <test thread-count="5" name="Test 3(failed)">
+    <parameter name="backBtn" value="//android.widget.ImageButton[@content-desc=&#039;Navigate up&#039;]"/>
+    <parameter name="playBtn" value="(//android.widget.ImageView[@content-desc=&#039;Play item&#039;])[1]"/>
+    <classes>
+      <class name="test.appiumTester">
+        <methods>
+          <include name="viewSongsAreDisplayed" invocation-numbers="0"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- test.appiumTester -->
+    </classes>
+  </test> <!-- Test 3(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

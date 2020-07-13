@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "8d1671f6-d4dd-4ea1-8194-6634775de82e",
+		"name": "Global Kinetic Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "parametizedRequests - image edition",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe00b136-e935-4062-9870-56413bd40439",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// This is to ensure the request is successful\r",
+							"// Fails using Runner, successful standalone GET\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breed/{{varDoge3}}/images/random",
+				"description": "Within this request we will be:\r\n\r\nShow image of desired dog [via global variable]"
+			},
+			"response": []
+		},
+		{
+			"name": "Status is Successfull ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc27ebe3-9101-4d1c-8ba5-494766dad6b3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Successful\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"success\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breeds/image/random",
+				"description": "The test will:\r\n\r\nCheck the status code is 200\r\nCheck the status returned is 'Success'"
+			},
+			"response": []
+		},
+		{
+			"name": "All Breeds Return",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4e1945e9-6026-42ac-8ee8-991dd67908ea",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "70589ecb-5d5b-4aad-b10e-3daa094935d0",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"brabancon\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"germanshepherd\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"rottweiler\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"australian\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breeds/list/all",
+				"description": "This checks all breeds are returned and checks specific breeds to validate"
+			},
+			"response": []
+		},
+		{
+			"name": "wheresMyBreed",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "57160b6b-23d6-45e3-8c86-41c5c4f5f3c5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a92a4a2-4327-446f-91ba-73c7b8bb5234",
+						"exec": [
+							"var myBreed = \"shihtzu\"\r",
+							"var myDoges = {\r",
+							"    \"doges\":[\"basenji\",\"doberman\",\"labrador\"\r",
+							"    ]\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has my breed\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(myBreed);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body has breeds\", function () {\r",
+							"    for (var i = 0; i < myDoges.doges.length; i++) {\r",
+							"    pm.expect(pm.response.text()).to.include(myDoges.doges[i]);\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breeds/list/all",
+				"description": "This test checks that the desired breed (via variable) is returned\r\nAlso check that a list of doges are included within the response body"
+			},
+			"response": []
+		},
+		{
+			"name": "parametizedRequests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc5c8a6a-19e8-40f7-a1b7-7aea08208b50",
+						"exec": [
+							"var myDoggos = {\r",
+							"    \"doges\":[\r",
+							"        \"afghan\",\r",
+							"        \"basset\",\r",
+							"        \"blood\",\r",
+							"        \"english\",\r",
+							"        \"ibizan\",\r",
+							"        \"plott\",\r",
+							"        \"walker\"\r",
+							"    ]\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// This is to ensure the request is successful\r",
+							"\r",
+							"pm.test(\"Body has strings\", function () {\r",
+							"    for (var i = 0; i < myDoggos.doges.length; i++) {\r",
+							"    pm.expect(pm.response.text()).to.include(myDoggos.doges[i]);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://dog.ceo/api/breed/{{varDoge2}}/list",
+				"description": "Within this request we will be:\r\n\r\nValidate & show a list of sub breeds [via global variable]"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
